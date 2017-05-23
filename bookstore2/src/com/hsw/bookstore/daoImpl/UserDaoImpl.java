@@ -12,16 +12,15 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 
 	@Override
 	public User getUser(String username) {
-		String hql = "select DISTINCT  u.* From tbl_user u,tbl_trade t,"
-					+ "tbl_tradeitem i, tbl_book b "
-					+" where u.id = t.userid "+
-					 "  AND i.tradeid = t.id"+
-					 "  AND i.bookid = b.id"+
-					 "  AND u.user_name=?";
-		Query query = getSession().createSQLQuery(hql).setParameter(0,username);
+		
+		String hql = "FROM User u WHERE u.username = ?";
+		Query query = getSession().createQuery(hql).setParameter(0, username);
+		
+		User user = (User) query.uniqueResult();
+		
+		return (User) getSession().load(User.class, user.getId());
 		
 		
-		return null;
 													
 				
 	}
