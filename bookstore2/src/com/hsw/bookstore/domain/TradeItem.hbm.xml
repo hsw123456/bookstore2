@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-18 22:09:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.hsw.bookstore.domain">
+    <class name="TradeItem" table="tbl_tradeItem">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        
+        <many-to-one name="book" class="com.hsw.bookstore.domain.Book" 
+        unique-key="true">
+            <column name="bookId"  />
+        </many-to-one>
+        
+        <!-- private Trade trade -->
+        <many-to-one name="trade" class="Trade" column="tradeId"></many-to-one>
+        
+        <property name="quantity" type="int">
+            <column name="QUANTITY" />
+        </property>
+    </class>
+</hibernate-mapping>

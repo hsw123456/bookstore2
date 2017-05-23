@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-1-18 22:09:46 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.hsw.bookstore.domain">
+    <class name="Trade" table="tbl_trade">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="tradeTime" type="java.util.Date">
+            <column name="TRADETIME" />
+        </property>
+        
+            <!-- user属性 映射Trade 对User 的多对一 关系 --> 
+            <many-to-one name="user" 
+            class="User"
+            column="userId"></many-to-one>
+            
+          <!-- private Set<TradeItem> items = new HashSet<>() --> 
+          <!-- items属性 映射Trade 对 TradeItem的一对多关系 --> 
+        <set name="items" table="tbl_tradeItem" cascade="all">
+            <key>
+                <column name="tradeId" />
+            </key>
+            <one-to-many class="TradeItem" />
+        </set>
+    </class>
+</hibernate-mapping>

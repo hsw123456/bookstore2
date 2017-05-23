@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple" />
+
+    <package name="default" namespace="/" extends="struts-default">
+		
+		<action name="bookstore_list" class="bookStoreAction" method="list">
+			<result name="list">/WEB-INF/jsps/books.jsp</result>
+		</action>
+		
+		<action name="bookstore_details" class="bookStoreAction" method="details">
+			<result name="book">/WEB-INF/jsps/book.jsp</result>
+		</action>
+		
+		<action name="bookstore_addToCart" class="bookStoreAction" method="addToCart">
+			<result name="toList" type="redirect">bookstore_list.action?pageNum=${pageNum}</result>
+			<result name="error-1">/error-1.jsp</result>
+		</action>
+		
+		<action name="bookstore_toCartPage" class="bookStoreAction" method="toCartPage">
+			<result name="cart">/WEB-INF/jsps/cart.jsp</result>
+		</action>
+		
+		<action name="bookstore_removeItem" class="bookStoreAction" method="removeItem">
+			<result name="cart">/WEB-INF/jsps/cart.jsp</result>
+			<result name="emptycart">/WEB-INF/jsps/emptycart.jsp</result>
+		</action>
+		
+		<action name="bookstore_clearCart" class="bookStoreAction" method="clearCart">
+			<result name="emptycart">/WEB-INF/jsps/emptycart.jsp</result>
+		</action>
+		
+		<action name="bookstore_toCash" class="bookStoreAction" method="toCash">
+			<result name="cash">/WEB-INF/jsps/cash.jsp</result>
+		</action>
+		
+		<action name="bookstore_cash" class="bookStoreAction" method="cash">
+			<result name="success">/success.jsp</result>
+			<result name="input">/WEB-INF/jsps/cash.jsp</result>
+		</action>
+		
+		<action name="user_details" class="userAction" method="details">
+			<result name="details">/WEB-INF/jsps/trades.jsp</result>
+			<result name="input">/users.jsp</result>
+			
+		</action>
+		
+		
+		
+    </package>
+
+
+
+</struts>
